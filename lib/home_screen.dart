@@ -1,3 +1,7 @@
+import 'package:best_friend/call_screen.dart';
+import 'package:best_friend/chat_screen.dart';
+import 'package:best_friend/custom_navbar.dart';
+import 'package:best_friend/resources.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -12,16 +16,9 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Best Friend"),
-        backgroundColor: Colors.purple,
+        title: Text("Home Screen"),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.phone), label: "Suicide"),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.message), label: "Chat"),
-        ],
-      ),
+      bottomNavigationBar: CustomNavBar(),
     );
   }
 }
