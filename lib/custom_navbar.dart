@@ -34,14 +34,17 @@ class _CustomNavBarState extends State<CustomNavBar> {
         unselectedItemColor: Colors.blue,
         selectedItemColor: Colors.purple,
         onTap: (index) => {
-              setState(() {
-                _selectedIndex = index;
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (_) => _pages[index],
-                  ),
-                );
-              }),
+              if (_selectedIndex != index)
+                {
+                  setState(() {
+                    _selectedIndex = index;
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => _pages[index],
+                      ),
+                    );
+                  }),
+                }
             });
   }
 }
