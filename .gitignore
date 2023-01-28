@@ -102,6 +102,8 @@ unlinked_spec.ds
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
 **/ios/firebase_app_id_file.json
+**/ios/Flutter/FlutterPluginRegistrant/Classes/GeneratedPluginRegistrant.h
+**/ios/Runner.xcodeproj/
 
 # macOS
 **/Flutter/ephemeral/
