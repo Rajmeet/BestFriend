@@ -1,7 +1,11 @@
+import 'package:best_friend/therapistProfile.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'about.dart';
 import 'tos.dart';
+import 'therapistProfile.dart';
 import 'custom_navbar.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,7 +17,34 @@ class ResourceScreen extends StatefulWidget {
   _ResourceScreenState createState() => _ResourceScreenState();
 }
 
+class Threapist {
+  String? image;
+  String? name;
+  double? score;
+
+// added '?'
+
+  Threapist({this.image, this.name, this.score});
+  // can also add 'required' keyword
+}
+
 class _ResourceScreenState extends State<ResourceScreen> {
+  void _openTherapistDetails(int index) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const Therapist(),
+      ),
+    );
+  }
+
+  List<Threapist> therapists = [
+    Threapist(image: "assets/therapist1.png", name: "Mrs. Noname", score: 3.8),
+    Threapist(image: "assets/therapist2.png", name: "Mrs. Doe", score: 2.5),
+    Threapist(image: "assets/therapist3.png", name: "Ms. Joy", score: 3.6),
+    Threapist(image: "assets/therapist4.png", name: "Mr. Noname", score: 2.2),
+    Threapist(image: "assets/therapist5.png", name: "Mr. Doe", score: 4.1),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -57,33 +88,32 @@ class _ResourceScreenState extends State<ResourceScreen> {
         ],
       ),
       body: ListView.builder(
-          itemCount: 5,
+          itemCount: therapists.length,
           itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                // add padding to the top of the title
-                title: Padding(
-                  padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
-                  child: Text(
-                    "Therapist $index",
-                    style: TextStyle(fontSize: 20),
+            return GestureDetector(
+              onTap: () => _openTherapistDetails(index),
+              child: Card(
+                child: ListTile(
+                  leading: Image(image: AssetImage(therapists[index].image!)),
+                  title: Padding(
+                    padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
+                    child: Text(
+                      therapists[index].name!,
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
-                ),
-                subtitle: RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
-                    Icons.star,
-                    color: Colors.amber,
+                  subtitle: IgnorePointer(
+                    ignoring: true,
+                    child: RatingBarIndicator(
+                      rating: therapists[index].score!,
+                      itemBuilder: (context, index) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 50.0,
+                    ),
                   ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
                 ),
               ),
             );

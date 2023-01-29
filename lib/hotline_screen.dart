@@ -15,10 +15,29 @@ class HotlineScreen extends StatefulWidget {
   _HotlineScreenState createState() => _HotlineScreenState();
 }
 
+// class BottomSheetApp extends StatelessWidget {
+//   const BottomSheetApp({super.key});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       theme: ThemeData(
+//         colorSchemeSeed: const Color(0xff6750a4),
+//         useMaterial3: true,
+//       ),
+//       home: Scaffold(
+//         appBar: AppBar(title: const Text('Bottom Sheet Sample')),
+//         body: const BottomSheetExample(),
+//       ),
+//     );
+//   }
+// }
+
 class _HotlineScreenState extends State<HotlineScreen> {
   final List<types.Message> _messages = [];
   final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   final _user2 = const types.User(id: '420-69-420-69');
+  int sucideWordCount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -33,11 +52,27 @@ class _HotlineScreenState extends State<HotlineScreen> {
         backgroundColor: const Color.fromARGB(255, 172, 98, 209),
         title: Text("Hotline"),
       ),
-      body: Chat(
-        messages: _messages,
-        onSendPressed: _handleSendPressed,
-        user: _user,
-      ),
+      body: sucideWordCount >= 2
+          // show alert dialog
+          ? AlertDialog(
+              title: const Text("Sucide Helpline"),
+              content: const Text(
+                  "I have noticed that you have been saying some things that are quite serious. I would reccomend calling '988' for better help."),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child:
+                      const Text("OK", style: TextStyle(color: Colors.black)),
+                ),
+              ],
+            )
+          : Chat(
+              messages: _messages,
+              onSendPressed: _handleSendPressed,
+              user: _user,
+            ),
       bottomNavigationBar: CustomNavBar(1),
     );
   }
@@ -49,7 +84,6 @@ class _HotlineScreenState extends State<HotlineScreen> {
   }
 
   void _handleSendPressed(types.PartialText message) {
-    String result = "";
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
@@ -57,6 +91,15 @@ class _HotlineScreenState extends State<HotlineScreen> {
       text: message.text,
     );
     setState(() {
+      fetchCheckThots(textMessage.text).then((value) {
+        if (mounted) {
+          setState(() {
+            if (value[1] == "TRUE") {
+              sucideWordCount++;
+            }
+          });
+        }
+      });
       _addMessage(textMessage);
       fetchData(textMessage.text,
               "This is a conversation with a sucide helpline operator.")
@@ -87,4 +130,28 @@ String randomString() {
   final random = Random.secure();
   final values = List<int>.generate(16, (i) => random.nextInt(255));
   return base64UrlEncode(values);
+}
+
+Future<void> temp(BuildContext context) {
+  return showModalBottomSheet<void>(
+    context: context,
+    builder: (BuildContext context) {
+      return SizedBox(
+        height: 200,
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: <Widget>[
+              const Text('Call 988'),
+              ElevatedButton(
+                child: const Text('Close'),
+                onPressed: () => Navigator.pop(context),
+              ),
+            ],
+          ),
+        ),
+      );
+    },
+  );
 }
