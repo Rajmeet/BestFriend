@@ -1,4 +1,6 @@
 import 'package:best_friend/therapistProfile.dart';
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import 'about.dart';
@@ -15,6 +17,17 @@ class ResourceScreen extends StatefulWidget {
   _ResourceScreenState createState() => _ResourceScreenState();
 }
 
+class Threapist {
+  String? image;
+  String? name;
+  double? score;
+
+// added '?'
+
+  Threapist({this.image, this.name, this.score});
+  // can also add 'required' keyword
+}
+
 class _ResourceScreenState extends State<ResourceScreen> {
   void _openTherapistDetails(int index) {
     Navigator.of(context).push(
@@ -24,40 +37,40 @@ class _ResourceScreenState extends State<ResourceScreen> {
     );
   }
 
+  List<Threapist> threapists = [
+    Threapist(image: "assets/David.png", name: "David", score: 3.8),
+    Threapist(image: "assets/David.png", name: "David", score: 2.5),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       // ...
       body: ListView.builder(
-          itemCount: 5,
+          itemCount: threapists.length,
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                leading: const FlutterLogo(size: 72.0),
+                leading: Image(image: AssetImage(threapists[index].image!)),
+                // add padding to the top of the title
                 title: Padding(
                   padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
-                  child: GestureDetector(
-                    onTap: () => _openTherapistDetails(index),
-                    child: Text(
-                      "Therapist " + (index + 1).toString(),
-                      style: const TextStyle(fontSize: 20),
-                    ),
+                  child: Text(
+                    threapists[index].name!,
+                    style: TextStyle(fontSize: 20),
                   ),
                 ),
-                subtitle: RatingBar.builder(
-                  initialRating: 3,
-                  minRating: 1,
-                  direction: Axis.horizontal,
-                  allowHalfRating: true,
-                  itemCount: 5,
-                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => const Icon(
-                    Icons.star,
-                    color: Colors.amber,
+                subtitle: IgnorePointer(
+                  ignoring: true,
+                  child: RatingBarIndicator(
+                    rating: threapists[index].score!,
+                    itemBuilder: (context, index) => Icon(
+                      Icons.star,
+                      color: Colors.amber,
+                    ),
+                    itemCount: 5,
+                    itemSize: 50.0,
                   ),
-                  onRatingUpdate: (rating) {
-                    print(rating);
-                  },
                 ),
               ),
             );
