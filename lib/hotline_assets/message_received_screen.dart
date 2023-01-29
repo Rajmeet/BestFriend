@@ -6,7 +6,7 @@ import 'custom_shape.dart';
 class ReceivedMessageScreen extends StatelessWidget {
   final String message;
   const ReceivedMessageScreen({
-    required Key key,
+    Key? key,
     required this.message,
   }) : super(key: key);
 

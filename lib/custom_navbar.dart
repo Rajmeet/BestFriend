@@ -20,7 +20,7 @@ class _CustomNavBarState extends State<CustomNavBar> {
   Widget build(BuildContext context) {
     final List _pages = [
       const ResourceScreen(),
-      const CallScreen(),
+      const HotlineScreen(),
       const ChatScreen(),
       const HomeScreen(),
     ];

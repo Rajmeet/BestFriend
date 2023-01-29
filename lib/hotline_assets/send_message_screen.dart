@@ -5,7 +5,7 @@ import 'custom_shape.dart';
 class SentMessageScreen extends StatelessWidget {
   final String message;
   const SentMessageScreen({
-    required Key key,
+    Key? key,
     required this.message,
   }) : super(key: key);
 
