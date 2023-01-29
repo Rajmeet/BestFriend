@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math';
 
+import 'package:best_friend/gcp_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:flutter_chat_ui/flutter_chat_ui.dart';
@@ -15,7 +16,6 @@ class HotlineScreen extends StatefulWidget {
 }
 
 class _HotlineScreenState extends State<HotlineScreen> {
-
   final List<types.Message> _messages = [];
   final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
   final _user2 = const types.User(id: '420-69-420-69');
@@ -49,23 +49,33 @@ class _HotlineScreenState extends State<HotlineScreen> {
   }
 
   void _handleSendPressed(types.PartialText message) {
+    String result = "";
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,
       id: randomString(),
       text: message.text,
     );
-
-    _addMessage(textMessage);
-    _generateRandomResponse();
+    setState(() {
+      _addMessage(textMessage);
+      fetchData(textMessage.text,
+              "This is a conversation with a sucide helpline operator.")
+          .then((value) {
+        if (mounted) {
+          setState(() {
+            _generateRandomResponse(value[1]);
+          });
+        }
+      });
+    });
   }
 
-  void _generateRandomResponse() {
+  void _generateRandomResponse(response) {
     final randMessage = types.TextMessage(
       author: _user2,
       createdAt: DateTime.now().millisecondsSinceEpoch,
       id: randomString(),
-      text: randomString(),
+      text: response,
     );
 
     _addMessage(randMessage);
