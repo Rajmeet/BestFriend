@@ -17,7 +17,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: Text("Chat"),
       ),
-      bottomNavigationBar: CustomNavBar(), 
+      bottomNavigationBar: CustomNavBar(3), 
     );
   }
 }

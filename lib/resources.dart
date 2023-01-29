@@ -16,7 +16,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
       appBar: AppBar(
         title: Text("Resources"),
       ),
-      bottomNavigationBar: CustomNavBar(),
+      bottomNavigationBar: CustomNavBar(1),
     );
   }
 }

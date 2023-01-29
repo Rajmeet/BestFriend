@@ -16,7 +16,7 @@ class _CallScreenState extends State<CallScreen> {
       appBar: AppBar(
         title: Text("Call Screen"),
       ),
-      bottomNavigationBar: CustomNavBar(), 
+      bottomNavigationBar: CustomNavBar(2), 
     );
   }
 }

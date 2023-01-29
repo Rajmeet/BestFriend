@@ -5,7 +5,9 @@ import 'package:best_friend/resources.dart';
 import 'package:flutter/material.dart';
 
 class CustomNavBar extends StatefulWidget {
-  const CustomNavBar({
+  int _id = 0;
+  CustomNavBar(
+    this._id, {
     super.key,
   });
 
@@ -16,12 +18,11 @@ class CustomNavBar extends StatefulWidget {
 class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 0;
     final List _pages = [
       const HomeScreen(),
       const ResourceScreen(),
-      const ChatScreen(),
-      const CallScreen()
+      const CallScreen(),
+      const ChatScreen()
     ];
 
     return BottomNavigationBar(
@@ -31,18 +32,23 @@ class _CustomNavBarState extends State<CustomNavBar> {
           BottomNavigationBarItem(icon: Icon(Icons.phone), label: 'Hotline'),
           BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Chat'),
         ],
+        currentIndex: widget._id,
         unselectedItemColor: Colors.blue,
         selectedItemColor: Colors.purple,
-        onTap: (index) => {
-              if (_selectedIndex != index)
+        onTap: (int index) => {
+              if (widget._id != index)
                 {
                   setState(() {
-                    _selectedIndex = index;
-                    Navigator.of(context).push(
+                    if (widget._id != 0) {
+                      Navigator.of(context).pop();
+                    }
+                    if (index != 0) {
+                      Navigator.of(context).push(
                       MaterialPageRoute(
                         builder: (_) => _pages[index],
                       ),
                     );
+                    }
                   }),
                 }
             });
