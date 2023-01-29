@@ -1,3 +1,3 @@
 # best_friend
 
-Authors: Kollin Bartz
+Authors: Rajmeet Singh Chandok, Aman Dhruva, Kollin Bartz, David Rackerby
