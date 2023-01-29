@@ -66,7 +66,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
                 title: Padding(
                   padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
                   child: Text(
-                    "Theropist $index",
+                    "Therapist $index",
                     style: TextStyle(fontSize: 20),
                   ),
                 ),
