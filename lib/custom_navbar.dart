@@ -32,10 +32,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
           BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Chat'),
         ],
         currentIndex: widget._id < 3 ? widget._id : 0,
-        unselectedItemColor: const Color.fromARGB(255, 77, 190, 90),
+        unselectedItemColor: const Color.fromARGB(255, 172, 98, 209),
         selectedItemColor: widget._id < 3
-            ? const Color.fromARGB(255, 19, 66, 25)
-            : const Color.fromARGB(255, 77, 190, 90),
+            ? const Color.fromARGB(255, 100, 27, 135)
+            : const Color.fromARGB(255, 172, 98, 209),
         onTap: (int index) => {
               if (widget._id != index)
                 {

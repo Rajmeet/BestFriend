@@ -20,7 +20,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
             Navigator.of(context).pop();
           },
         ),
-        backgroundColor: const Color.fromARGB(255, 77, 190, 90),
+        backgroundColor: const Color.fromARGB(255, 172, 98, 209),
         title: Text("Resources"),
       ),
       bottomNavigationBar: CustomNavBar(0),
