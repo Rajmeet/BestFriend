@@ -10,13 +10,10 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Best Friend',
-      theme: ThemeData(
-        primaryColor: const Color.fromARGB(255, 96, 209, 109)
-      ),
-      home: const HomeScreen(),
+      home: HomeScreen(),
     );
   }
 }

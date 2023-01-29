@@ -20,6 +20,7 @@ class _CallScreenState extends State<CallScreen> {
             Navigator.of(context).pop();
           },
         ),
+        backgroundColor: const Color.fromARGB(255, 77, 190, 90),
         title: Text("Hotline"),
       ),
       bottomNavigationBar: CustomNavBar(1),
