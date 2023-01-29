@@ -3,6 +3,11 @@ import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+nltk.download('vader_lexicon')
+
+
 app = Flask(__name__)
 CORS(app)
 
@@ -49,6 +54,19 @@ def hello_world2():
     # }
 
     # return jsonify(data)
+
+@app.route("/check/", methods=['POST', "DELETE", "GET"])
+def hello_world3():    
+    text = request.args.get('checkmsg')
     
+    sid = SentimentIntensityAnalyzer()
+    sentiment = sid.polarity_scores(text)
+    
+    if sentiment['compound'] <= -0.035:
+        return "TRUE"
+    else:
+        return "FALSE"
+    
+
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
