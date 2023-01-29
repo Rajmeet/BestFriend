@@ -9,6 +9,8 @@ class ResourceScreen extends StatefulWidget {
 
   @override
   _ResourceScreenState createState() => _ResourceScreenState();
+
+  // make a list for name and description
 }
 
 class _ResourceScreenState extends State<ResourceScreen> {

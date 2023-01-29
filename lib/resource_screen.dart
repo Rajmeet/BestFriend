@@ -4,6 +4,8 @@ import 'about.dart';
 import 'tos.dart';
 import 'custom_navbar.dart';
 
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+
 class ResourceScreen extends StatefulWidget {
   const ResourceScreen({Key? key}) : super(key: key);
 
@@ -54,6 +56,38 @@ class _ResourceScreenState extends State<ResourceScreen> {
           ),
         ],
       ),
+      body: ListView.builder(
+          itemCount: 5,
+          itemBuilder: (context, index) {
+            return Card(
+              child: ListTile(
+                leading: FlutterLogo(size: 72.0),
+                // add padding to the top of the title
+                title: Padding(
+                  padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
+                  child: Text(
+                    "Theropist $index",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                ),
+                subtitle: RatingBar.builder(
+                  initialRating: 3,
+                  minRating: 1,
+                  direction: Axis.horizontal,
+                  allowHalfRating: true,
+                  itemCount: 5,
+                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                  ),
+                  onRatingUpdate: (rating) {
+                    print(rating);
+                  },
+                ),
+              ),
+            );
+          }),
       bottomNavigationBar: CustomNavBar(0),
     );
   }
