@@ -27,7 +27,45 @@ class _ResourceScreenState extends State<ResourceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // ...
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.home),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
+        backgroundColor: const Color.fromARGB(255, 172, 98, 209),
+        title: const Text("Therapists"),
+        actions: <Widget>[
+          PopupMenuButton<int>(
+            onSelected: (value) {
+              if (value == 1) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ToS()),
+                );
+              } else if (value == 2) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const About()),
+                );
+              }
+            },
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
+                  value: 1,
+                  child: Text("Terms of Service"),
+                ),
+                const PopupMenuItem(
+                  value: 2,
+                  child: Text("About"),
+                ),
+              ];
+            },
+          ),
+        ],
+      ),
       body: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
