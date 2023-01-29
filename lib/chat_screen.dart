@@ -15,6 +15,12 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+          icon: Icon(Icons.home),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
         title: Text("Chat"),
       ),
       bottomNavigationBar: CustomNavBar(3), 

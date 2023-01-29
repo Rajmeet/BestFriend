@@ -44,10 +44,10 @@ class _CustomNavBarState extends State<CustomNavBar> {
                     }
                     if (index != 0) {
                       Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (_) => _pages[index],
-                      ),
-                    );
+                        MaterialPageRoute(
+                          builder: (_) => _pages[index],
+                        ),
+                      );
                     }
                   }),
                 }
