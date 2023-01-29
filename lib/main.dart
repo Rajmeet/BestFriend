@@ -1,3 +1,4 @@
+import 'package:best_friend/test.dart';
 import 'package:flutter/material.dart';
 import 'home_screen.dart';
 
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Bestfriend',
-      home: HomeScreen(),
+      home: TestPython(),
     );
   }
 }
