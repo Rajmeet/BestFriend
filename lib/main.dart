@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      
+      debugShowCheckedModeBanner: false,
       title: 'Best Friend',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        primaryColor: const Color.fromARGB(255, 96, 209, 109)
       ),
       home: const HomeScreen(),
     );
