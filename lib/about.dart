@@ -37,29 +37,31 @@ class _AboutState extends State<About> {
         itemBuilder: (BuildContext context, int index) {
           final lines = paragraphs[index].split("\n");
           return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                (index == 0)
-                    ? Container(
-                        width: MediaQuery.of(context).size.width,
-                        decoration: const BoxDecoration(
-                          color: Color.fromARGB(255, 160, 160, 160),
-                          border: Border(
-                            top: BorderSide(color: Colors.black, width: 2),
-                            bottom: BorderSide(color: Colors.black, width: 2),
-                          ),
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              (index == 0)
+                  ? Container(
+                      width: MediaQuery.of(context).size.width,
+                      decoration: const BoxDecoration(
+                        color: Color.fromARGB(255, 160, 160, 160),
+                        border: Border(
+                          top: BorderSide(color: Colors.black, width: 2),
+                          bottom: BorderSide(color: Colors.black, width: 2),
                         ),
-                        height: screenHeight * .2,
-                        child: Image.asset(images[index]),
-                      )
-                    : Container(
-                        height: screenHeight * 0.2,
-                        child: Image.asset(images[index]),
                       ),
-                const SizedBox(
-                  height: 10,
-                ),
-                Center(
+                      height: screenHeight * .2,
+                      child: Image.asset(images[index]),
+                    )
+                  : Container(
+                      height: screenHeight * 0.2,
+                      child: Image.asset(images[index]),
+                    ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                margin: EdgeInsets.all(20),
+                child: Center(
                   child: Column(
                     children: <Widget>[
                       Text(
@@ -69,11 +71,16 @@ class _AboutState extends State<About> {
                         ),
                         textAlign: TextAlign.center,
                       ),
-                      Text(lines[1]),
+                      Text(
+                        lines[1],
+                        textAlign: TextAlign.center,
+                      ),
                     ],
                   ),
                 ),
-              ]);
+              ),
+            ],
+          );
         },
       ),
     );
