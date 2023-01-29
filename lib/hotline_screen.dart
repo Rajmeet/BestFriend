@@ -1,7 +1,10 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:math';
 
-import 'hotline_assets/send_message_screen.dart';
-import 'hotline_assets/message_received_screen.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
+import 'package:flutter_chat_ui/flutter_chat_ui.dart';
+
 import 'custom_navbar.dart';
 
 class HotlineScreen extends StatefulWidget {
@@ -12,6 +15,11 @@ class HotlineScreen extends StatefulWidget {
 }
 
 class _HotlineScreenState extends State<HotlineScreen> {
+
+  final List<types.Message> _messages = [];
+  final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
+  final _user2 = const types.User(id: '420-69-420-69');
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,20 +33,48 @@ class _HotlineScreenState extends State<HotlineScreen> {
         backgroundColor: const Color.fromARGB(255, 172, 98, 209),
         title: Text("Hotline"),
       ),
-      body: Container(
-        child: ListView(
-          children: [
-            SentMessageScreen(message: "Hello"),
-            ReceivedMessageScreen(message: "Hi, how are you"),
-            SentMessageScreen(message: "I am great how are you doing"),
-            ReceivedMessageScreen(message: "I am also fine"),
-            SentMessageScreen(message: "Can we meet tomorrow?"),
-            ReceivedMessageScreen(
-                message: "Yes, of course we will meet tomorrow"),
-          ],
-        ),
+      body: Chat(
+        messages: _messages,
+        onSendPressed: _handleSendPressed,
+        user: _user,
       ),
       bottomNavigationBar: CustomNavBar(1),
     );
   }
+
+  void _addMessage(types.Message message) {
+    setState(() {
+      _messages.insert(0, message);
+    });
+  }
+
+  void _handleSendPressed(types.PartialText message) {
+    final textMessage = types.TextMessage(
+      author: _user,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: randomString(),
+      text: message.text,
+    );
+
+    _addMessage(textMessage);
+    _generateRandomResponse();
+  }
+
+  void _generateRandomResponse() {
+    final randMessage = types.TextMessage(
+      author: _user2,
+      createdAt: DateTime.now().millisecondsSinceEpoch,
+      id: randomString(),
+      text: randomString(),
+    );
+
+    _addMessage(randMessage);
+  }
+}
+
+// For the testing purposes, you should probably use https://pub.dev/packages/uuid.
+String randomString() {
+  final random = Random.secure();
+  final values = List<int>.generate(16, (i) => random.nextInt(255));
+  return base64UrlEncode(values);
 }
