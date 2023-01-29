@@ -17,7 +17,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 172, 98, 209),
-        title: const Text("Home Screen"),
+        title: Image.asset("assets/logoTran.png", width: 80, height: 120),
+        centerTitle: true,
       ),
       body: Stack(
         children: <Widget>[
