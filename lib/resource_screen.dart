@@ -25,7 +25,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
           },
         ),
         backgroundColor: const Color.fromARGB(255, 172, 98, 209),
-        title: const Text("Theropists"),
+        title: const Text("Therapists"),
         actions: <Widget>[
           PopupMenuButton<int>(
             onSelected: (value) {
