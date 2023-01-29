@@ -84,7 +84,6 @@ class _HotlineScreenState extends State<HotlineScreen> {
   }
 
   void _handleSendPressed(types.PartialText message) {
-    String result = "";
     final textMessage = types.TextMessage(
       author: _user,
       createdAt: DateTime.now().millisecondsSinceEpoch,

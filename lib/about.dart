@@ -42,8 +42,12 @@ class _AboutState extends State<About> {
                 (index == 0)
                     ? Container(
                         width: MediaQuery.of(context).size.width,
-                        decoration: BoxDecoration(
-                          color: Colors.grey[400],
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 160, 160, 160),
+                          border: Border(
+                            top: BorderSide(color: Colors.black, width: 2),
+                            bottom: BorderSide(color: Colors.black, width: 2),
+                          ),
                         ),
                         height: screenHeight * .2,
                         child: Image.asset(images[index]),
