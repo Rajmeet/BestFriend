@@ -37,9 +37,12 @@ class _ResourceScreenState extends State<ResourceScreen> {
     );
   }
 
-  List<Threapist> threapists = [
-    Threapist(image: "assets/David.png", name: "David", score: 3.8),
-    Threapist(image: "assets/David.png", name: "David", score: 2.5),
+  List<Threapist> therapists = [
+    Threapist(image: "assets/therapist1.png", name: "Mrs. Noname", score: 3.8),
+    Threapist(image: "assets/therapist2.png", name: "Mrs. Doe", score: 2.5),
+    Threapist(image: "assets/therapist3.png", name: "Ms. Joy", score: 3.6),
+    Threapist(image: "assets/therapist4.png", name: "Mr. Noname", score: 2.2),
+    Threapist(image: "assets/therapist5.png", name: "Mr. Doe", score: 4.1),
   ];
 
   @override
@@ -85,29 +88,31 @@ class _ResourceScreenState extends State<ResourceScreen> {
         ],
       ),
       body: ListView.builder(
-          itemCount: threapists.length,
+          itemCount: therapists.length,
           itemBuilder: (context, index) {
-            return Card(
-              child: ListTile(
-                leading: Image(image: AssetImage(threapists[index].image!)),
-                // add padding to the top of the title
-                title: Padding(
-                  padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
-                  child: Text(
-                    threapists[index].name!,
-                    style: TextStyle(fontSize: 20),
-                  ),
-                ),
-                subtitle: IgnorePointer(
-                  ignoring: true,
-                  child: RatingBarIndicator(
-                    rating: threapists[index].score!,
-                    itemBuilder: (context, index) => Icon(
-                      Icons.star,
-                      color: Colors.amber,
+            return GestureDetector(
+              onTap: () => _openTherapistDetails(index),
+              child: Card(
+                child: ListTile(
+                  leading: Image(image: AssetImage(therapists[index].image!)),
+                  title: Padding(
+                    padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
+                    child: Text(
+                      therapists[index].name!,
+                      style: const TextStyle(fontSize: 20),
                     ),
-                    itemCount: 5,
-                    itemSize: 50.0,
+                  ),
+                  subtitle: IgnorePointer(
+                    ignoring: true,
+                    child: RatingBarIndicator(
+                      rating: therapists[index].score!,
+                      itemBuilder: (context, index) => const Icon(
+                        Icons.star,
+                        color: Colors.amber,
+                      ),
+                      itemCount: 5,
+                      itemSize: 50.0,
+                    ),
                   ),
                 ),
               ),
