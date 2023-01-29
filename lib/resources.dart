@@ -22,7 +22,7 @@ class _ResourceScreenState extends State<ResourceScreen> {
         ),
         title: Text("Resources"),
       ),
-      bottomNavigationBar: CustomNavBar(1),
+      bottomNavigationBar: CustomNavBar(0),
     );
   }
 }

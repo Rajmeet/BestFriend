@@ -23,7 +23,7 @@ class _ChatScreenState extends State<ChatScreen> {
         ),
         title: Text("Chat"),
       ),
-      bottomNavigationBar: CustomNavBar(3), 
+      bottomNavigationBar: CustomNavBar(2),
     );
   }
 }

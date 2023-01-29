@@ -19,36 +19,33 @@ class _CustomNavBarState extends State<CustomNavBar> {
   @override
   Widget build(BuildContext context) {
     final List _pages = [
-      const HomeScreen(),
       const ResourceScreen(),
       const CallScreen(),
-      const ChatScreen()
+      const ChatScreen(),
+      const HomeScreen(),
     ];
 
     return BottomNavigationBar(
         items: const [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.info), label: 'Resource'),
           BottomNavigationBarItem(icon: Icon(Icons.phone), label: 'Hotline'),
           BottomNavigationBarItem(icon: Icon(Icons.message), label: 'Chat'),
         ],
-        currentIndex: widget._id,
+        currentIndex: widget._id < 3 ? widget._id : 0,
         unselectedItemColor: Colors.blue,
-        selectedItemColor: Colors.purple,
+        selectedItemColor: widget._id < 3 ? Colors.purple : Colors.blue,
         onTap: (int index) => {
               if (widget._id != index)
                 {
                   setState(() {
-                    if (widget._id != 0) {
+                    if (widget._id != 3) {
                       Navigator.of(context).pop();
                     }
-                    if (index != 0) {
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (_) => _pages[index],
-                        ),
-                      );
-                    }
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (_) => _pages[index],
+                      ),
+                    );
                   }),
                 }
             });

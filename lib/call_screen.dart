@@ -20,9 +20,9 @@ class _CallScreenState extends State<CallScreen> {
             Navigator.of(context).pop();
           },
         ),
-        title: Text("Call Screen"),
+        title: Text("Hotline"),
       ),
-      bottomNavigationBar: CustomNavBar(2), 
+      bottomNavigationBar: CustomNavBar(1),
     );
   }
 }
