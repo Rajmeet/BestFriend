@@ -19,7 +19,13 @@ class _ToSState extends State<ToS> {
               Container(
                 height: screenHeight * .2,
                 width: MediaQuery.of(context).size.width,
-                color: Colors.grey[500],
+                decoration: const BoxDecoration(
+                  color: Color.fromARGB(255, 160, 160, 160),
+                  border: Border(
+                    top: BorderSide(color: Colors.black, width: 2),
+                    bottom: BorderSide(color: Colors.black, width: 2),
+                  ),
+                ),
                 child: Image.asset(
                   "assets/logoTran.png",
                 ),
