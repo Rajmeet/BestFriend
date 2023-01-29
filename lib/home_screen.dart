@@ -23,9 +23,10 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Stack(
         children: <Widget>[
           SingleChildScrollView(
+            physics: const NeverScrollableScrollPhysics(),
             child: Container(
-              height: 1000,
-              width: 1000,
+              height: MediaQuery.of(context).size.height * 1.1,
+              width: MediaQuery.of(context).size.width,
               decoration: const BoxDecoration(
                 gradient: RadialGradient(
                   colors: [
