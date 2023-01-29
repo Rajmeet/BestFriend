@@ -52,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Container(
               alignment: Alignment.center,
               child: const Text(
-                  "Welcome to Bestfriend!\nYou are never too old\nto meet your new\nBestfriend.",
+                  "Welcome to Bestfriend!\nYou are never too old to meet your new\nBestfriend.",
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontSize: 32)),
             ),
