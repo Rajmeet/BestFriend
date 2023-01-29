@@ -11,6 +11,7 @@ class _TherapistState extends State<Therapist> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 172, 98, 209),
         title: const Text("Mrs. Noname"),

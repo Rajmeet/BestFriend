@@ -14,6 +14,7 @@ class _ToSState extends State<ToS> {
     return Stack(
       children: [
         Scaffold(
+          backgroundColor: Colors.white,
           body: Column(
             children: [
               Container(

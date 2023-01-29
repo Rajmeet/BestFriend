@@ -15,24 +15,6 @@ class HotlineScreen extends StatefulWidget {
   _HotlineScreenState createState() => _HotlineScreenState();
 }
 
-// class BottomSheetApp extends StatelessWidget {
-//   const BottomSheetApp({super.key});
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return MaterialApp(
-//       theme: ThemeData(
-//         colorSchemeSeed: const Color(0xff6750a4),
-//         useMaterial3: true,
-//       ),
-//       home: Scaffold(
-//         appBar: AppBar(title: const Text('Bottom Sheet Sample')),
-//         body: const BottomSheetExample(),
-//       ),
-//     );
-//   }
-// }
-
 class _HotlineScreenState extends State<HotlineScreen> {
   final List<types.Message> _messages = [];
   final _user = const types.User(id: '82091008-a484-4a89-ae75-a22bf8d6f3ac');
@@ -42,6 +24,7 @@ class _HotlineScreenState extends State<HotlineScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         leading: IconButton(
           icon: Icon(Icons.home),
