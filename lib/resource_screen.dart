@@ -1,7 +1,9 @@
+import 'package:best_friend/therapistProfile.dart';
 import 'package:flutter/material.dart';
 
 import 'about.dart';
 import 'tos.dart';
+import 'therapistProfile.dart';
 import 'custom_navbar.dart';
 
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -14,60 +16,32 @@ class ResourceScreen extends StatefulWidget {
 }
 
 class _ResourceScreenState extends State<ResourceScreen> {
+  void _openTherapistDetails(int index) {
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (_) => const Therapist(),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.home),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        backgroundColor: const Color.fromARGB(255, 172, 98, 209),
-        title: const Text("Therapists"),
-        actions: <Widget>[
-          PopupMenuButton<int>(
-            onSelected: (value) {
-              if (value == 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ToS()),
-                );
-              } else if (value == 2) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const About()),
-                );
-              }
-            },
-            itemBuilder: (context) {
-              return [
-                const PopupMenuItem(
-                  value: 1,
-                  child: Text("Terms of Service"),
-                ),
-                const PopupMenuItem(
-                  value: 2,
-                  child: Text("About"),
-                ),
-              ];
-            },
-          ),
-        ],
-      ),
+      // ...
       body: ListView.builder(
           itemCount: 5,
           itemBuilder: (context, index) {
             return Card(
               child: ListTile(
-                leading: FlutterLogo(size: 72.0),
-                // add padding to the top of the title
+                leading: const FlutterLogo(size: 72.0),
                 title: Padding(
                   padding: const EdgeInsets.fromLTRB(3, 10, 5, 10),
-                  child: Text(
-                    "Therapist $index",
-                    style: TextStyle(fontSize: 20),
+                  child: GestureDetector(
+                    onTap: () => _openTherapistDetails(index),
+                    child: Text(
+                      "Therapist " + (index + 1).toString(),
+                      style: const TextStyle(fontSize: 20),
+                    ),
                   ),
                 ),
                 subtitle: RatingBar.builder(
@@ -76,8 +50,8 @@ class _ResourceScreenState extends State<ResourceScreen> {
                   direction: Axis.horizontal,
                   allowHalfRating: true,
                   itemCount: 5,
-                  itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                  itemBuilder: (context, _) => Icon(
+                  itemPadding: const EdgeInsets.symmetric(horizontal: 4.0),
+                  itemBuilder: (context, _) => const Icon(
                     Icons.star,
                     color: Colors.amber,
                   ),
