@@ -140,3 +140,6 @@ app.*.symbols
 **/lib/firebase_options.dart
 service-account.json
 credentials.py
+
+# So David doesn't have to click on the arrow every time to run the app
+Makefile
